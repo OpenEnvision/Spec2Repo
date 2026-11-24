@@ -107,7 +107,7 @@ button { font-family: var(--sans); }
 
 /* ----- TL;DR cards ----- */
 .tldr-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
   max-width: 1080px; margin: 0 auto; padding: 1.6rem 1.5rem 0;
 }
 .tldr-card {

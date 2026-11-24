@@ -13,12 +13,10 @@
       { k: 'fcr', h: 'FCR', sub: 'overall', cls: 'fcr' },
       ...S.LANGS.map((l) => ({ k: 'lang.' + l, h: S.LNAME[l], sub: S.NTASK[l] + ' tasks' })),
       { k: 'resolved', h: 'Resolved', sub: '(almost)', cls: 'res' },
-      { k: 'pass', h: 'Pass rate', sub: 'tests' },
     ],
     cost: [
       { k: 'fcr', h: 'FCR', sub: 'overall', cls: 'fcr' },
       { k: 'resolved', h: 'Resolved', sub: '(almost)', cls: 'res' },
-      { k: 'pass', h: 'Pass rate', sub: 'tests' },
       { k: 'cost', h: 'Cost', sub: '$ / run' },
       { k: 'tokens', h: 'Tokens', sub: 'M / run' },
       { k: 'calls', h: 'API calls', sub: '/ run' },
