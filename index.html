@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spec2Repo — Benchmarking Repository Construction against Behavioral Specifications</title>
+<meta name="description" content="Spec2Repo: 150 repository-construction tasks in five languages. The agent receives only a behavioral specification and an empty workspace, and hidden tests grade each specified capability." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Spec2Repo — Benchmarking Repository Construction against Behavioral Specifications" />
+<meta property="og:description" content="150 tasks · 5 languages · 1,962 capabilities · 16,597 hidden tests. The best configuration delivers 73.2% of specified capabilities and resolves 8.7% of tasks." />
+<meta property="og:image" content="static/images/og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Spec2Repo — Repository Construction against Behavioral Specifications" />
+<meta name="twitter:description" content="Leaderboard: the best of twelve model–scaffold configurations delivers 73.2% of specified capabilities and resolves 8.7% of tasks." />
+<meta name="twitter:image" content="static/images/og-card.png" />
+
+<link rel="icon" type="image/svg+xml" href="static/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<link rel="stylesheet" href="static/css/style.css" />
+</head>
+
+<body>
+
+<!-- ================== TOP NAV ================== -->
+<nav class="topnav" id="topnav">
+  <a class="brand" href="#top"><img src="static/images/favicon.svg" alt="" />Spec2Repo</a>
+  <div class="navlinks">
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#demo">Example</a>
+    <a href="#benchmark">Benchmark</a>
+    <a href="#tasks">Tasks</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#submit" class="cta">Get evaluated</a>
+  </div>
+</nav>
+
+<!-- ================== HERO ================== -->
+<section class="hero-banner" id="top">
+  <h1 class="hero-title"><img src="static/images/favicon.svg" alt="" class="hero-logo" /><span class="accent">Spec</span>2<span class="accent2">Repo</span></h1>
+  <p class="hero-subtitle">Benchmarking Repository Construction against Behavioral Specifications</p>
+
+  <p class="author-list">
+    <span class="au">Chuan&nbsp;Xiao<sup>*†</sup></span> ·
+    <span class="au">Zhengbo&nbsp;Jiao<sup>*†</sup></span> ·
+    <span class="au">Yiming&nbsp;Cheng<sup>*</sup></span> ·
+    <span class="au">Juanxi&nbsp;Tian<sup>*</sup></span> ·
+    <span class="au">Weiwei&nbsp;Xu<sup>*</sup></span> ·
+    <span class="au">Bingxiang&nbsp;He<sup>*</sup></span>
+  </p>
+  <p class="author-more" id="author-more" hidden>
+    <span class="au">Hongyu&nbsp;Xian</span> · <span class="au">Zhikang&nbsp;Chen</span> · <span class="au">Chenhang&nbsp;Cui</span> ·
+    <span class="au">Rui&nbsp;Huang</span> · <span class="au">Jiadong&nbsp;Hou</span> · <span class="au">Zhiqian&nbsp;Li</span> ·
+    <span class="au">Junming&nbsp;Liu</span> · <span class="au">Tailai&nbsp;Chen</span> · <span class="au">Yuxin&nbsp;Tang</span> ·
+    <span class="au">Yanghao&nbsp;Zhou</span> · <span class="au">Jiahao&nbsp;Ni</span> · <span class="au">Yangfu&nbsp;Li</span> ·
+    <span class="au">Yanhan&nbsp;Zhou</span> · <span class="au">Chenyu&nbsp;Liu</span> · <span class="au">Zijian&nbsp;Zhou</span> ·
+    <span class="au">Kaijie&nbsp;Zhang</span> · <span class="au">Weidong&nbsp;Tang</span> · <span class="au">Xin&nbsp;Yan</span> ·
+    <span class="au">Qinglong&nbsp;Wang</span> · <span class="au">Tianle&nbsp;Pu</span> · <span class="au">Lingxiao&nbsp;Jing</span> ·
+    <span class="au">Bofan&nbsp;Zhu</span> · <span class="au">Zifan&nbsp;Zhang</span> · <span class="au">Tianyi&nbsp;Jiang</span> ·
+    <span class="au">Baojie&nbsp;Wang</span> · <span class="au">Haizhao&nbsp;Fan</span> · <span class="au">Fushun&nbsp;Cui</span> ·
+    <span class="au">Qinlei&nbsp;Xie</span> · <span class="au">De&nbsp;Hua</span> · <span class="au">Chenxu&nbsp;Zhang</span> ·
+    <span class="au">Jianghan&nbsp;Shen</span> · <span class="au">Haitian&nbsp;Li</span> · <span class="au">Mingyu&nbsp;Luo</span> ·
+    <span class="au">Shanyu&nbsp;Rong</span>
+  </p>
+  <button class="author-toggle" id="author-toggle" type="button" aria-expanded="false" aria-controls="author-more">+ 34 contributors</button>
+  <p class="author-list">
+    <span class="au">Wanhua&nbsp;Li<sup>‡</sup></span> ·
+    <span class="au">Zhijiang&nbsp;Guo<sup>‡</sup></span> ·
+    <span class="au">Mouxiang&nbsp;Chen<sup>‡</sup></span> ·
+    <span class="au">Qi&nbsp;Wang<sup>‡</sup></span> ·
+    <span class="au">Jingyuan&nbsp;Zhang<sup>‡</sup></span> ·
+    <span class="au">Wei&nbsp;Wang<sup>‡</sup></span> ·
+    <span class="au">Bing&nbsp;Zhao<sup>✉</sup></span>
+  </p>
+  <p class="affiliation">AIDATA, Alibaba Group · Qwen, Alibaba Token Hub · DAMO Academy, Alibaba Group</p>
+  <p class="contact"><sup>*</sup>Core contributors · <sup>†</sup>Project leads · <sup>‡</sup>Senior advisors · <sup>✉</sup>Corresponding author</p>
+
+  <div class="link-buttons">
+    <a class="button" href="#leaderboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
+      <span>Leaderboard</span>
+    </a>
+    <a class="button soon" href="#" aria-disabled="true" title="Link will be added on release">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+      <span>Paper</span><span class="soon-tag">soon</span>
+    </a>
+    <a class="button soon" href="#" aria-disabled="true" title="Link will be added on release">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+      <span>Code</span><span class="soon-tag">soon</span>
+    </a>
+    <a class="button" href="#submit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      <span>Get evaluated</span>
+    </a>
+    <a class="button" href="#bibtex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+      <span>BibTeX</span>
+    </a>
+  </div>
+</section>
+
+<!-- ================== TL;DR ================== -->
+<div class="tldr-grid">
+  <div class="tldr-card deep">
+    <div class="tldr-num">150<span class="unit"> tasks</span></div>
+    <div class="tldr-label">5 languages, from an empty workspace</div>
+    <div class="tldr-foot">1,962 capabilities · 16,597 hidden tests</div>
+  </div>
+  <div class="tldr-card">
+    <div class="tldr-num">73.2<span class="unit">%</span></div>
+    <div class="tldr-label">best FCR of 12 configurations</div>
+    <div class="tldr-foot">Claude Opus 5 · mini-swe-agent</div>
+  </div>
+  <div class="tldr-card pink">
+    <div class="tldr-num">8.7<span class="unit">%</span></div>
+    <div class="tldr-label">tasks resolved, at best</div>
+    <div class="tldr-foot">13 of 150 · 118 resolved by no configuration</div>
+  </div>
+  <div class="tldr-card">
+    <div class="tldr-num">19–32<span class="unit"> pts</span></div>
+    <div class="tldr-label">test pass rate above FCR</div>
+    <div class="tldr-foot">in every configuration</div>
+  </div>
+</div>
+
+<!-- ================== LEADERBOARD ================== -->
+<section id="leaderboard" class="section-block">
+  <h2 class="section-title">Leaderboard</h2>
+  <p class="section-sub">
+    Six frontier models, each under the bash-only <code>mini-swe-agent</code> and a production CLI agent.
+    Ranked by <strong>FCR</strong>, the share of specified capabilities whose hidden tests all pass. Click a column to sort.
+  </p>
+
+  <div class="toolbar">
+    <span class="lab">Show</span>
+    <div class="seg" id="lb-filter">
+      <button data-v="all" class="active">All 12</button>
+      <button data-v="best">Best per model</button>
+      <button data-v="mini">mini-swe-agent</button>
+      <button data-v="cli">CLI agent</button>
+    </div>
+    <span class="lab">Columns</span>
+    <div class="seg" id="lb-view">
+      <button data-v="lang" class="active">FCR by language</button>
+      <button data-v="cost">Cost &amp; effort</button>
+    </div>
+  </div>
+
+  <div class="table-wrap lb-wrap">
+    <table class="data lb" id="lb-table"></table>
+  </div>
+  <p class="note" id="lb-note"></p>
+</section>
+
+<div class="divider-rule"></div>
+
+<!-- ================== HERO DEMO ================== -->
+<section id="demo" class="section-block">
+  <h2 class="section-title">Passing tests is not delivering software</h2>
+  <p class="section-sub">
+    A real run from the leaderboard, on the Go task <code>alertmanager</code>. Its three failing tests each check a behavior of a different capability,
+    and a capability counts only when every one of its tests passes.
+  </p>
+
+  <div class="demo-wrap">
+    <div class="demo-head">
+      <div class="who"><strong>Claude Opus 5</strong> with Claude Code · task <code>alertmanager</code> · 3 capabilities, 72 hidden tests</div>
+      <div class="demo-controls">
+        <button id="demo-replay" class="primary" type="button">▶ Run tests</button>
+        <button id="demo-skip" type="button">Show result</button>
+      </div>
+    </div>
+    <div class="demo-body">
+      <div class="demo-caps">
+        <div class="cells demo-grid" id="demo-grid" aria-label="72 hidden tests"></div>
+        <div class="beh-grid" id="demo-beh"></div>
+      </div>
+      <div class="demo-meters">
+        <div>
+          <div class="meter-label">Test pass rate</div>
+          <div class="meter-val pass" id="m-pass">0.0%</div>
+          <div class="meter-sub" id="m-pass-sub">0 / 72 tests</div>
+          <div class="meter-bar pass"><span id="m-pass-bar"></span></div>
+        </div>
+        <div>
+          <div class="meter-label">FCR</div>
+          <div class="meter-val fcr" id="m-fcr">–</div>
+          <div class="meter-sub" id="m-fcr-sub">0 / 3 capabilities</div>
+          <div class="meter-bar fcr"><span id="m-fcr-bar"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-foot" id="demo-foot">
+      Click a pink test to see the behavior the run missed.
+    </div>
+  </div>
+</section>
+
+<!-- ================== CONTRIBUTIONS ================== -->
+<div class="contributions-box">
+  <h3 class="contributions-heading">Key Contributions</h3>
+  <div class="contributions-items">
+    <div class="contrib-item">
+      <span class="contrib-icon">1</span>
+      <div><strong>Benchmark.</strong> 150 repository-construction tasks in five languages, in which the specification alone defines correct behavior and the agent receives only that specification and an empty workspace. 16,597 hidden tests reach the submission solely through the declared public interface and are grouped into 1,962 capabilities, scored by the functional completion rate (FCR).</div>
+    </div>
+    <div class="contrib-item">
+      <span class="contrib-icon">2</span>
+      <div><strong>Construction pipeline.</strong> A five-stage pipeline builds tasks free of the reference implementation's internal conventions. Every test must pass on the reference implementation and fail on an interface-only stub, and the specification departs from upstream behavior so that recalling a well-known project does not suffice.</div>
+    </div>
+    <div class="contrib-item">
+      <span class="contrib-icon">3</span>
+      <div><strong>Findings.</strong> No configuration delivers more than 73.2% of the specified capabilities or resolves more than 8.7% of tasks. Failures concentrate at the hand-offs between components, mostly in code that exists but is wrong, and agents stop once their own tests pass.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider-rule"></div>
+
+<!-- ================== ABSTRACT ================== -->
+<section id="abstract" class="section-block">
+  <h2 class="section-title">Abstract</h2>
+  <div class="abstract-content">
+    <p>
+      Coding agents are increasingly expected to build software from scratch, working from a specification and making every design decision themselves.
+      A benchmark for this setting should therefore leave the design to the agent and test only the behavior that the specification states.
+      Existing repository-construction benchmarks instead grade with a reference implementation's tests, which can be passed only if the specification names its internal modules and classes, fixing much of the design in advance.
+    </p>
+    <p>
+      We introduce <strong>Spec2Repo</strong>, a benchmark of 150 tasks in five programming languages in which an agent receives only a behavioral specification and an empty workspace.
+      Hidden tests check the stated requirements both individually and in multi-component workflows, and reach the submission only through the declared public interface.
+      The tests are grouped by the 1,962 capabilities the specifications define, and we report the <strong>functional completion rate</strong> (FCR), the fraction of capabilities whose tests all pass.
+    </p>
+    <p>
+      Across six frontier models and two agent scaffolds, the strongest configuration delivers 73.2% of the specified capabilities but resolves only 8.7% of tasks.
+      Undelivered capabilities fail most often at the hand-offs between components, and mostly in code that exists but is wrong.
+      Agents check their work with tests written from the same reading of the specification as the code, and therefore stop when they are convinced, not when they are correct.
+    </p>
+  </div>
+</section>
+
+<div class="divider-rule"></div>
+
+<!-- ================== BENCHMARK ================== -->
+<section id="benchmark" class="section-block">
+  <h2 class="section-title">The benchmark</h2>
+  <p class="section-sub">Each task is a single Markdown specification and a hidden test suite, packaged in the Harbor task format.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="p-task" role="tab"><span class="tag">TASK</span> What the agent receives</button>
+    <button class="tab" data-panel="p-pipe" role="tab"><span class="tag">BUILD</span> Construction pipeline</button>
+    <button class="tab" data-panel="p-metric" role="tab"><span class="tag">SCORE</span> Functional completion rate</button>
+  </div>
+
+  <div class="tab-panel active" id="p-task">
+    <div class="figure-card">
+      <img src="static/images/task_sample.png" alt="Components of a Spec2Repo task" loading="lazy" />
+      <p class="figure-cap"><b>Components of a task, shown on a Go task.</b> The behavioral specification is all the agent receives besides an empty workspace. It opens with a product overview, then organizes requirements into context, one section per capability, a contract that applies across capabilities (state model, errors, invariants), and a reference section declaring the public interface, the only symbols the tests may call. A capability counts as delivered only when all of its tests pass.</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="p-pipe">
+    <div class="figure-card">
+      <img src="static/images/pipeline.png" alt="Construction pipeline of a Spec2Repo task" loading="lazy" />
+    </div>
+    <div class="stage-grid">
+      <div class="stage"><span class="n">1</span><b>Project sampling</b><p>Sizable open-source projects that coordinate several components, expose several public views, and ship tests that run offline.</p></div>
+      <div class="stage"><span class="n">2</span><b>Specification</b><p>Public interface plus EARS requirements, organized by capability. Module layout and helpers stay the agent's choice.</p></div>
+      <div class="stage"><span class="n">3</span><b>Test suite</b><p>Upstream tests rewritten against the public interface, and generated tests kept only when a stated requirement implies them.</p></div>
+      <div class="stage"><span class="n">4</span><b>Quality control</b><p>Each test passes on the reference implementation, fails on an interface-only stub, and traces to a stated requirement.</p></div>
+      <div class="stage"><span class="n">5</span><b>Release</b><p>Specification and hidden tests packaged as a Harbor task and evaluated offline in a fresh container.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="p-metric">
+    <div class="metric-grid">
+      <div class="formula-card">
+        <h4>A capability counts only when it is whole</h4>
+        <div class="formula" id="f-fcr">FCR(P) = (1/|C|) Σ<sub>c∈C</sub> Π<sub>t∈T<sub>c</sub></sub> r(t, P)</div>
+        <p>Each test checks a behavior the specification states, and a capability combines several behaviors into one feature a user relies on. FCR is the all-tests rule of function- and issue-level benchmarks, applied to the smallest unit a user relies on.</p>
+        <p>We also report the <b>test pass rate</b>, the share of tests that pass, and whether a task is <b>resolved</b>, with every test passing.</p>
+      </div>
+      <div class="toy-card">
+        <h4>Try it</h4>
+        <p class="toy-hint">Click a test to flip it. Watch the three metrics diverge.</p>
+        <div id="toy"></div>
+        <div class="toy-out">
+          <div><div class="k">Pass rate</div><div class="v pass" id="toy-pass"></div></div>
+          <div><div class="k">FCR</div><div class="v fcr" id="toy-fcr"></div></div>
+          <div><div class="k">Resolved</div><div class="v res" id="toy-res"></div></div>
+        </div>
+        <div class="toy-btns">
+          <button data-preset="one">One miss per capability</button>
+          <button data-preset="few">Misses in one capability</button>
+          <button data-preset="all">All pass</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-rule"></div>
+
+<!-- ================== TASKS ================== -->
+<section id="tasks" class="section-block">
+  <h2 class="section-title">150 tasks, every result</h2>
+  <p class="section-sub">Each column is a task, each row a configuration, colored by FCR. Hover for details, click to pin a task.</p>
+
+  <div class="stat-strip">
+    <div class="stat"><div class="v">150</div><div class="k">tasks</div></div>
+    <div class="stat"><div class="v">5</div><div class="k">languages</div></div>
+    <div class="stat"><div class="v">1,962</div><div class="k">capabilities</div></div>
+    <div class="stat"><div class="v">16,597</div><div class="k">hidden tests</div></div>
+    <div class="stat"><div class="v">3,796</div><div class="k">median spec words</div></div>
+    <div class="stat"><div class="v">8</div><div class="k">median cross-view invariants</div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="seg" id="hm-lang">
+      <button data-v="all" class="active">All</button>
+      <button data-v="python">Python</button>
+      <button data-v="typescript">TypeScript</button>
+      <button data-v="rust">Rust</button>
+      <button data-v="java">Java</button>
+      <button data-v="go">Go</button>
+    </div>
+    <div class="seg" id="hm-sort">
+      <button data-v="mean" class="active">Sort by mean FCR</button>
+      <button data-v="name">Sort by name</button>
+    </div>
+    <input class="search" id="hm-search" type="search" placeholder="Find a task, e.g. beancount" aria-label="Find a task" />
+  </div>
+
+  <div class="explorer-card">
+    <svg id="hm-svg" role="img" aria-label="FCR of every configuration on every task"></svg>
+    <div class="scale"><span>0%</span><span class="grad"></span><span>100% FCR</span></div>
+    <div class="task-detail" id="task-detail"><div class="empty">Select a task to see its twelve results.</div></div>
+  </div>
+
+  <details class="fig-details">
+    <summary>Show the distribution of tasks (domain, size, test types) ▾</summary>
+    <div class="figure-card">
+      <img src="static/images/task_distribution.png" alt="Distribution of the 150 Spec2Repo tasks" loading="lazy" />
+      <p class="figure-cap"><b>Distribution of the 150 tasks.</b> (a) Application domain and language. (b)–(g) Per-task numbers of tests and capabilities, test type, specification length, tests per capability, and cross-view invariants.</p>
+    </div>
+  </details>
+</section>
+
+<div class="divider-rule"></div>
+
+<!-- ================== ANALYSIS ================== -->
+<div class="result-group-header" id="analysis">
+  <span class="result-group-label">Analysis · Part 1</span>
+  <h3>Most tests pass, but capabilities fail</h3>
+</div>
+
+<section class="section-block sub-section">
+  <h2 class="section-title">Pass rate, FCR, and resolved tasks</h2>
+  <p class="section-sub">Every configuration passes most tests, yet its FCR trails its pass rate by 19 to 32 points, and none resolves more than 8.7% of tasks.</p>
+  <div class="chart-card">
+    <svg id="gap-svg" role="img" aria-label="Pass rate, FCR and resolved share per configuration"></svg>
+    <div class="legend">
+      <span><i style="background:#C9A3D9"></i>Test pass rate</span>
+      <span><i style="background:#823C95"></i>FCR</span>
+      <span><i style="background:#C2185B"></i>Resolved tasks</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-block sub-section">
+  <div class="q-head">Where do capabilities fail?</div>
+  <div class="finding-grid">
+    <div class="finding"><div class="num">½<small>of lost capabilities</small></div><div><h4>A single behavior is missing</h4><p>Lost capabilities usually miss one or two of the behaviors their section states, and about half miss exactly one.</p></div></div>
+    <div class="finding pink"><div class="num">84.9%<small>of 611 runs</small></div><div><h4>≥95% of tests pass, a capability is still lost</h4><p>Each capability is checked by eight tests on average, so a few failing behaviors break whole features.</p></div></div>
+    <div class="finding"><div class="num">60.0%<small>of integration failures</small></div><div><h4>Every part works, the hand-off fails</h4><p>Among integration tests labeled with the atomic tests they build on, most failures occur while all of those atomic tests pass.</p></div></div>
+    <div class="finding pink"><div class="num">71.5%<small>of sampled failures</small></div><div><h4>The code exists but is wrong</h4><p>It returns a wrong value, leaves inconsistent state, raises the wrong error, or crashes. In 22.7% no code handles the condition, and in 5.8% the interface is absent.</p></div></div>
+  </div>
+
+  <div class="case-card">
+    <div class="ch"><b>Case · Python task <code>agate</code></b>, Claude Opus 5 with mini-swe-agent</div>
+    <div class="cb">
+      <div><div class="lbl ok">Built against its own section</div>Aggregation returns one row per group with its key and aggregate columns, and a join–group–sum pipeline returns the correct totals.</div>
+      <div><div class="lbl no">Missed across sections</div>The grouped result has no row names, which the specification's state model requires of every grouped output.</div>
+    </div>
+  </div>
+
+  <details class="fig-details">
+    <summary>Show the near-miss figure ▾</summary>
+    <div class="figure-card">
+      <img src="static/images/fig4_nearmiss.png" alt="Capabilities are lost to one or two failing behaviors" loading="lazy" />
+      <p class="figure-cap"><b>Capabilities are lost to one or two failing behaviors.</b> (a) Failing tests per lost capability. (b) Capabilities lost by runs passing at least 95% of tests. (c) Failing integration tests split by whether the atomic tests of the parts they chain all pass.</p>
+    </div>
+  </details>
+</section>
+
+<div class="result-group-header">
+  <span class="result-group-label">Analysis · Part 2</span>
+  <h3>Agents stop when their own tests pass</h3>
+</div>
+
+<section class="section-block sub-section">
+  <div class="finding-grid">
+    <div class="finding"><div class="num">79.2%<small>of 1,800 runs</small></div><div><h4>The last self-test before submission passes</h4><p>These runs deliver no more of the specification than the average run, a mean FCR of 60% against 59%.</p></div></div>
+    <div class="finding pink"><div class="num">18.3%<small>vs 36.1% in the benchmark</small></div><div><h4>Agents rarely test the hand-offs</h4><p>Few of the agents' own tests combine the interfaces of two or more capabilities.</p></div></div>
+    <div class="finding"><div class="num">71.7%<small>vs 70.0% delivered</small></div><div><h4>Self-tests cover what they miss</h4><p>Agents' tests exercise undelivered capabilities as often as delivered ones, with assertions that follow the implementation.</p></div></div>
+    <div class="finding pink"><div class="num">2 / 12<small>configurations</small></div><div><h4>More steps rarely help</h4><p>Runs with more steps than the median deliver more in only 2 of 12 configurations, and more test commands in only 3.</p></div></div>
+  </div>
+  <p class="gap-conclusion">A requirement the agent misreads is wrong in its code and its tests together, and one it overlooks is absent from both.</p>
+
+  <details class="fig-details">
+    <summary>Show the verdicts figure ▾</summary>
+    <div class="figure-card">
+      <img src="static/images/fig5_verdicts.png" alt="Agents are convinced long before they are correct" loading="lazy" />
+      <p class="figure-cap"><b>Agents are convinced long before they are correct.</b> (a) Runs judged by their own last test run, by passing at least 95% of benchmark tests, and by resolving the task. (b) Share of a run's commands issued after its own tests first all pass.</p>
+    </div>
+  </details>
+</section>
+
+<div class="result-group-header">
+  <span class="result-group-label">Analysis · Part 3</span>
+  <h3>Spending more does not deliver more</h3>
+</div>
+
+<section class="section-block sub-section">
+  <div class="toolbar">
+    <span class="lab">x-axis</span>
+    <div class="seg" id="cost-x">
+      <button data-v="cost" class="active">Cost per run ($)</button>
+      <button data-v="tokens">Tokens (M)</button>
+      <button data-v="calls">API calls</button>
+    </div>
+  </div>
+  <div class="chart-card">
+    <svg id="cost-svg" role="img" aria-label="FCR against median cost per run"></svg>
+    <div class="legend">
+      <span><i style="background:#823C95"></i>mini-swe-agent</span>
+      <span><i style="background:#fff;border:2px solid #C2185B;box-sizing:border-box"></i>CLI agent</span>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Claude Opus 5</strong> with mini-swe-agent delivers 73.2% FCR at a median of $11.20 per run, while <strong>GPT 5.6 Sol</strong> under the same scaffold reaches 66.6% for $1.08.
+    Qwen 3.8 Max spends $13.02 per run and delivers 59.7%. Medians per run at list price with prompt caching.
+  </div>
+</section>
+
+<div class="divider-rule"></div>
+
+<!-- ================== SUBMIT ================== -->
+<section id="submit" class="section-block">
+  <h2 class="section-title">Get evaluated</h2>
+  <p class="section-sub">The tasks and hidden tests are not publicly released. To have a model or scaffold evaluated on Spec2Repo, contact the authors.</p>
+  <div class="submit-grid">
+    <div class="submit-step"><span class="n">1</span><h4>Contact us</h4><p>Write to <a href="mailto:frostlin2005@gmail.com">frostlin2005@gmail.com</a> with the model or scaffold you want evaluated.</p></div>
+    <div class="submit-step"><span class="n">2</span><h4>Same protocol</h4><p>Each run starts from the specification and an empty workspace in a fresh container, with an 8-hour budget and network access limited to the model API and a package registry.</p></div>
+    <div class="submit-step"><span class="n">3</span><h4>Offline scoring</h4><p>The repository is built in a fresh container and the hidden tests run without network access. The agent never sees the tests or the reference implementation.</p></div>
+    <div class="submit-step"><span class="n">4</span><h4>Reported metrics</h4><p>FCR, test pass rate, and resolved tasks over all 150 tasks, the same columns as the leaderboard.</p></div>
+  </div>
+</section>
+
+<div class="divider-rule"></div>
+
+<!-- ================== BIBTEX ================== -->
+<section id="bibtex" class="section-block">
+  <h2 class="section-title">BibTeX</h2>
+  <div class="bibtex-wrap">
+    <button class="bibtex-copy" type="button" id="bibtex-copy">copy</button>
+<pre id="bibtex-block">@article{xiao2026spec2repo,
+  title   = {Spec2Repo: Benchmarking Repository Construction against Behavioral Specifications},
+  author  = {Xiao, Chuan and Jiao, Zhengbo and Cheng, Yiming and Tian, Juanxi and
+             Xu, Weiwei and He, Bingxiang and Xian, Hongyu and Chen, Zhikang and
+             Cui, Chenhang and Huang, Rui and Hou, Jiadong and Li, Zhiqian and
+             Liu, Junming and Chen, Tailai and Tang, Yuxin and Zhou, Yanghao and
+             Ni, Jiahao and Li, Yangfu and Zhou, Yanhan and Liu, Chenyu and
+             Zhou, Zijian and Zhang, Kaijie and Tang, Weidong and Yan, Xin and
+             Wang, Qinglong and Pu, Tianle and Jing, Lingxiao and Zhu, Bofan and
+             Zhang, Zifan and Jiang, Tianyi and Wang, Baojie and Fan, Haizhao and
+             Cui, Fushun and Xie, Qinlei and Hua, De and Zhang, Chenxu and
+             Shen, Jianghan and Li, Haitian and Luo, Mingyu and Rong, Shanyu and
+             Li, Wanhua and Guo, Zhijiang and Chen, Mouxiang and Wang, Qi and
+             Zhang, Jingyuan and Wang, Wei and Zhao, Bing},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</pre>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<footer class="page-footer">
+  <p style="margin-bottom:0.6rem;"><img src="static/images/favicon.svg" alt="" class="footer-logo" /></p>
+  <p>© 2026 Spec2Repo authors · Contact: <a href="mailto:frostlin2005@gmail.com">frostlin2005@gmail.com</a>, <a href="mailto:xiongdao@alibaba-inc.com">xiongdao@alibaba-inc.com</a></p>
+</footer>
+
+<div id="chart-tooltip" role="tooltip"></div>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" defer></script>
+<script src="static/js/data.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/leaderboard.js"></script>
+<script src="static/js/demo.js"></script>
+<script src="static/js/metric.js"></script>
+<script src="static/js/charts.js"></script>
+<script src="static/js/explorer.js"></script>
+</body>
+</html>
