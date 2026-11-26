@@ -1,0 +1,109 @@
+cff-version: 1.2.0
+message: "If you use Spec2Repo in your research, please cite our paper."
+title: "Spec2Repo: Benchmarking Repository Construction against Behavioral Specifications"
+type: software
+doi: 10.13140/RG.2.2.35899.86567
+url: "https://openenvision.org/Spec2Repo/"
+repository-code: "https://github.com/OpenEnvision/Spec2Repo"
+date-released: 2026-11-26
+preferred-citation:
+  type: article
+  title: "Spec2Repo: Benchmarking Repository Construction against Behavioral Specifications"
+  year: 2026
+  doi: 10.13140/RG.2.2.35899.86567
+  url: "https://openenvision.org/Spec2Repo/"
+  authors:
+    - family-names: Xiao
+      given-names: Chuan
+    - family-names: Jiao
+      given-names: Zhengbo
+    - family-names: Cheng
+      given-names: Yiming
+    - family-names: Tian
+      given-names: Juanxi
+    - family-names: Xu
+      given-names: Weiwei
+    - family-names: He
+      given-names: Bingxiang
+    - family-names: Xian
+      given-names: Hongyu
+    - family-names: Chen
+      given-names: Zhikang
+    - family-names: Cui
+      given-names: Chenhang
+    - family-names: Huang
+      given-names: Rui
+    - family-names: Hou
+      given-names: Jiadong
+    - family-names: Li
+      given-names: Zhiqian
+    - family-names: Liu
+      given-names: Junming
+    - family-names: Chen
+      given-names: Tailai
+    - family-names: Tang
+      given-names: Yuxin
+    - family-names: Zhou
+      given-names: Yanghao
+    - family-names: Ni
+      given-names: Jiahao
+    - family-names: Li
+      given-names: Yangfu
+    - family-names: Zhou
+      given-names: Yanhan
+    - family-names: Liu
+      given-names: Chenyu
+    - family-names: Zhou
+      given-names: Zijian
+    - family-names: Zhang
+      given-names: Kaijie
+    - family-names: Tang
+      given-names: Weidong
+    - family-names: Yan
+      given-names: Xin
+    - family-names: Wang
+      given-names: Qinglong
+    - family-names: Pu
+      given-names: Tianle
+    - family-names: Jing
+      given-names: Lingxiao
+    - family-names: Zhu
+      given-names: Bofan
+    - family-names: Zhang
+      given-names: Zifan
+    - family-names: Jiang
+      given-names: Tianyi
+    - family-names: Wang
+      given-names: Baojie
+    - family-names: Fan
+      given-names: Haizhao
+    - family-names: Cui
+      given-names: Fushun
+    - family-names: Xie
+      given-names: Qinlei
+    - family-names: Hua
+      given-names: De
+    - family-names: Zhang
+      given-names: Chenxu
+    - family-names: Shen
+      given-names: Jianghan
+    - family-names: Li
+      given-names: Haitian
+    - family-names: Luo
+      given-names: Mingyu
+    - family-names: Rong
+      given-names: Shanyu
+    - family-names: Li
+      given-names: Wanhua
+    - family-names: Guo
+      given-names: Zhijiang
+    - family-names: Chen
+      given-names: Mouxiang
+    - family-names: Wang
+      given-names: Qi
+    - family-names: Zhang
+      given-names: Jingyuan
+    - family-names: Wang
+      given-names: Wei
+    - family-names: Zhao
+      given-names: Bing
